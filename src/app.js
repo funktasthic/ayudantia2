@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const db = require("./database/connection");
+const db = require("./config/database");
 const User = require("./models/User");
 
 class Server {
@@ -30,7 +30,7 @@ class Server {
 
   async database() {
     try {
-      // Entities
+      // Synchronize the database and models
       await db.authenticate();
       await User.sync({ force: false });
 
